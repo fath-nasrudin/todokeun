@@ -1,9 +1,11 @@
+import todoCore from "../model/todo.core.js";
 import { createElement } from "../utils/dom.js";
 
-// dummy data
+// user project data
+const projectItems = todoCore.project.getAllProjects();
 const userProjects = {
   title: "Projects",
-  items: [{ name: "Work" }, { name: "Home" }],
+  items: projectItems,
 };
 
 const filters = {
