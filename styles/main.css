@@ -1,0 +1,153 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+  display: block;
+}
+
+a {
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+/* layout */
+body {
+  display: flex;
+  gap: 16px;
+  min-height: 100vh;
+}
+
+.leftbar {
+  background-color: #c5c5c533;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mainbar {
+  flex: 1;
+}
+
+.leftbar-header,
+.mainbar-header {
+  padding-inline: 16px;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leftbar-nav {
+  padding-inline: 8px;
+}
+
+.leftbar-nav > * {
+  padding: 8px;
+}
+
+.leftbar-nav-item:hover {
+  background-color: #99999933;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.mainbar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Tasks */
+
+.tasks {
+  max-width: 720px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.tasks-filter-title {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.tasks-section-title {
+  font-weight: 600;
+}
+
+.tasks > *:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.task {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding-inline: 4px;
+}
+
+.task:hover {
+  background-color: #9696961e;
+}
+
+.task-checkbox {
+  cursor: pointer;
+}
+
+.task-firstline {
+  display: flex;
+}
+
+.task-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 4px;
+}
+
+.task-actions > * {
+  color: rgba(49, 49, 49, 0.712);
+  aspect-ratio: 1 / 1;
+  width: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-actions > *:hover {
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.task-body {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-description {
+  color: rgb(49, 49, 49);
+  font-size: 0.875rem;
+}
+
+.tasks-section > * {
+  padding-block: 8px;
+  border-bottom: 1px solid rgb(172, 172, 172);
+}
+
+.task-footer {
+  font-size: 0.825rem;
+
+  display: flex;
+  justify-content: space-between;
+}

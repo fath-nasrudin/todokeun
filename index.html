@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todokeun</title>
+    <script src="./src/main.js" type="module" defer></script>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body id="root">
+    <div class="leftbar">
+      <div class="leftbar-header">
+        <div>user account</div>
+        <div>x</div>
+      </div>
+      <div class="leftbar-nav">
+        <div class="leftbar-nav-header">headernya</div>
+        <div class="leftbar-nav-item">item ke 1</div>
+        <div class="leftbar-nav-item">item ke 2</div>
+        <div class="leftbar-nav-item">item ke 3</div>
+        <div class="leftbar-nav-item">item ke 4</div>
+        <div class="leftbar-nav-item">item ke 5</div>
+      </div>
+      <div class="leftbar-nav">
+        <div class="leftbar-nav-header">headernya</div>
+        <div class="leftbar-nav-item">item ke 1</div>
+        <div class="leftbar-nav-item">item ke 2</div>
+        <div class="leftbar-nav-item">item ke 3</div>
+        <div class="leftbar-nav-item">item ke 4</div>
+        <div class="leftbar-nav-item">item ke 5</div>
+      </div>
+    </div>
+    <div class="mainbar">
+      <header class="mainbar-header">
+        <a href="/"><div class="brand">Todokeun</div></a>
+      </header>
+
+      <div class="tasks">
+        <div class="tasks-filter-title">Header</div>
+        <div class="tasks-section">
+          <div class="tasks-section-title">section title</div>
+
+          <div class="task">
+            <div class="task-checkbox">
+              <input type="radio" name="task-checkbox" id="task-checkbox" />
+            </div>
+            <div class="task-body">
+              <div class="task-firstline">
+                <div class="task-title">Do homework</div>
+                <div class="task-actions">
+                  <div class="task-edit">E</div>
+                  <div class="task-delete">D</div>
+                </div>
+              </div>
+              <div class="task-description">the description of the task</div>
+              <div class="task-footer">
+                <div class="task-duedate">17 Mei 2025</div>
+                <div class="task-project">Inbox</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
