@@ -1,4 +1,14 @@
+import { renderProjectPage } from "../page/project.page.js";
+
 export function router() {
-  const hash = window.location.hash;
-  console.log(hash);
+  if (!window.location.hash) window.location.hash = "#/inbox";
+  let hash = window.location.hash;
+  const splittedHash = hash.split("/");
+  const route = splittedHash[1];
+  const param = splittedHash[2];
+
+  if (route === "project" && param) {
+    const [projectName, projectId] = param.split("--");
+    renderProjectPage(projectId);
+  }
 }

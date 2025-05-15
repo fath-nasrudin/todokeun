@@ -55,8 +55,15 @@ function renderTasksSection(title, data) {
   return tasksSection;
 }
 
-export function renderTasksContainer(title, data) {
-  const tasksContainer = createElement("div", "tasks");
+// data[0].title, data[0].tasks
+export function renderTasksContainer(title, data, querySelector = "") {
+  let tasksContainer;
+  if (querySelector) {
+    tasksContainer = document.querySelector(querySelector);
+    tasksContainer.textContent = "";
+  } else {
+    tasksContainer = createElement("div", "tasks");
+  }
 
   const tasksFilterTitle = createElement("div", "tasks-filter-title", title);
   tasksContainer.appendChild(tasksFilterTitle);
