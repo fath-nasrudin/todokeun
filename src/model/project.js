@@ -26,6 +26,11 @@ export function getAllProjects() {
   return loadProjects();
 }
 
+export function getProjectById(projectId) {
+  const projects = loadProjects();
+  return projects.find((project) => project.id === projectId);
+}
+
 export function createProject({ name }) {
   const projects = loadProjects();
   const newProject = {

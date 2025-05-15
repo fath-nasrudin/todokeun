@@ -15,6 +15,11 @@ export function getAllTasks() {
   return loadTasks();
 }
 
+export function getTasksByProjectId(projectId) {
+  const tasks = loadTasks();
+  return tasks.filter((task) => task.projectId === projectId);
+}
+
 // create task
 export function createTask({
   name,
