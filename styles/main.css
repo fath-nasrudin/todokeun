@@ -53,6 +53,7 @@ body {
 
 .leftbar-nav > * {
   padding: 8px;
+  border-radius: 4px;
 }
 
 .leftbar-nav-item:hover {
@@ -64,6 +65,11 @@ body {
 .leftbar-nav-item.disable {
   color: #9c9c9c;
   cursor: not-allowed;
+}
+
+.leftbar-nav-item.active {
+  background-color: rgba(255, 101, 101, 0.267);
+  color: rgb(199, 81, 69);
 }
 
 .mainbar {

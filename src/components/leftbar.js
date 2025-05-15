@@ -34,6 +34,7 @@ function renderNavSection({ title, items }) {
       `leftbar-nav-item ${item.disable ? " disable" : ""}`,
       item.name
     );
+    navItem.dataset.target = item.target;
 
     navItem.addEventListener("click", () => {
       window.location.hash = item.target;
