@@ -1,3 +1,4 @@
+import { renderInboxPage } from "../page/inbox.page.js";
 import { renderProjectPage } from "../page/project.page.js";
 
 export function router() {
@@ -10,5 +11,7 @@ export function router() {
   if (route === "project" && param) {
     const [projectName, projectId] = param.split("--");
     renderProjectPage(projectId);
+  } else if (route === "inbox") {
+    renderInboxPage();
   }
 }
