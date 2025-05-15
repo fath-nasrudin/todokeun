@@ -22,6 +22,10 @@ export function getDefaultProject() {
   return defaultProjectId;
 }
 
+export function getDefaultProjectId() {
+  return getDefaultProject();
+}
+
 export function getAllProjects() {
   return loadProjects();
 }
