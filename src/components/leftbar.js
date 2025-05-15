@@ -2,7 +2,12 @@ import todoCore from "../model/todo.core.js";
 import { createElement } from "../utils/dom.js";
 
 // user project data
-const projectItems = todoCore.project.getAllProjects();
+let projectItems = todoCore.project.getAllProjects();
+projectItems = projectItems.map((project) => {
+  const safeName = project.name.split(" ").join(" ");
+  project.target = `/project/${safeName}--${project.id}`;
+  return project;
+});
 const userProjects = {
   title: "Projects",
   items: projectItems,
@@ -10,7 +15,10 @@ const userProjects = {
 
 const filters = {
   title: "",
-  items: [{ name: "Today" }, { name: "Inbox" }],
+  items: [
+    { name: "Today", target: "/today" },
+    { name: "Inbox", target: "/inbox" },
+  ],
 };
 
 function renderNavSection({ title, items }) {
@@ -22,6 +30,9 @@ function renderNavSection({ title, items }) {
 
   items.forEach((item) => {
     const navItem = createElement("div", "leftbar-nav-item", item.name);
+    navItem.addEventListener("click", () => {
+      window.location.hash = item.target;
+    });
     navSection.append(navItem);
   });
 
