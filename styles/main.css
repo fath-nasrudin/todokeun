@@ -61,6 +61,11 @@ body {
   cursor: pointer;
 }
 
+.leftbar-nav-item.disable {
+  color: #9c9c9c;
+  cursor: not-allowed;
+}
+
 .mainbar {
   display: flex;
   flex-direction: column;

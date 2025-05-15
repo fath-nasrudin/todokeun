@@ -16,7 +16,7 @@ const userProjects = {
 const filters = {
   title: "",
   items: [
-    { name: "Today", target: "/today" },
+    { name: "Today", target: "/today", disable: true },
     { name: "Inbox", target: "/inbox" },
   ],
 };
@@ -29,7 +29,12 @@ function renderNavSection({ title, items }) {
   }
 
   items.forEach((item) => {
-    const navItem = createElement("div", "leftbar-nav-item", item.name);
+    const navItem = createElement(
+      "div",
+      `leftbar-nav-item ${item.disable ? " disable" : ""}`,
+      item.name
+    );
+
     navItem.addEventListener("click", () => {
       window.location.hash = item.target;
     });
