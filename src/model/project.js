@@ -30,6 +30,11 @@ export function getAllProjects() {
   return loadProjects();
 }
 
+export function getUserProjects() {
+  const projects = loadProjects();
+  return projects.filter((p) => p.id !== getDefaultProjectId());
+}
+
 export function getProjectById(projectId) {
   const projects = loadProjects();
   return projects.find((project) => project.id === projectId);
