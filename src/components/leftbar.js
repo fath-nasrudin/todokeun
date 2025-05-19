@@ -10,6 +10,20 @@ const filters = {
   ],
 };
 
+function renderNavItem(itemData) {
+  const navItem = createElement(
+    "div",
+    `leftbar-nav-item ${itemData.disable ? " disable" : ""}`,
+    itemData.name
+  );
+  navItem.dataset.target = itemData.target;
+
+  navItem.addEventListener("click", () => {
+    window.location.hash = itemData.target;
+  });
+  return navItem;
+}
+
 function renderNavSection({ title, items }) {
   const navSection = createElement("div", "leftbar-nav");
 
@@ -18,16 +32,7 @@ function renderNavSection({ title, items }) {
   }
 
   items.forEach((item) => {
-    const navItem = createElement(
-      "div",
-      `leftbar-nav-item ${item.disable ? " disable" : ""}`,
-      item.name
-    );
-    navItem.dataset.target = item.target;
-
-    navItem.addEventListener("click", () => {
-      window.location.hash = item.target;
-    });
+    const navItem = renderNavItem(item);
     navSection.append(navItem);
   });
 
@@ -71,16 +76,7 @@ function renderProjectNavSection() {
   const projectForm = renderProjectForm({}, onSubmit);
 
   const navItems = data.items.map((item) => {
-    const navItem = createElement(
-      "div",
-      `leftbar-nav-item ${item.disable ? " disable" : ""}`,
-      item.name
-    );
-    navItem.dataset.target = item.target;
-
-    navItem.addEventListener("click", () => {
-      window.location.hash = item.target;
-    });
+    const navItem = renderNavItem(item);
     return navItem;
   });
 
