@@ -8,7 +8,6 @@ function setActiveTab() {
   const route = splittedHash[1];
   const param = splittedHash[2];
 
-  console.log({ hash, splittedHash });
   const navItems = document.querySelectorAll(".leftbar-nav-item");
   navItems.forEach((item) => {
     item.classList.remove("active");
