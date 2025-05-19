@@ -2,7 +2,7 @@ import todoCore from "../model/todo.core.js";
 import { createElement } from "../utils/dom.js";
 
 // user project data
-let projectItems = todoCore.project.getAllProjects();
+let projectItems = todoCore.project.getUserProjects();
 projectItems = projectItems.map((project) => {
   const safeName = project.name.split(" ").join(" ");
   project.target = `/project/${safeName}--${project.id}`;
