@@ -42,15 +42,36 @@ function renderTaskItem(taskData) {
   return task;
 }
 
-function renderTaskForm(taskData = null) {
+function renderTaskForm(taskData = {}, onSubmit) {
   const taskForm = createElement("form", "task-form");
+  taskForm.method = "POST";
+  taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    // onSubmit action
+    const formData = new FormData(taskForm);
+
+    // edit
+    taskData = {
+      ...taskData,
+      name: formData.get("name"),
+      projectId: formData.get("projectId"),
+    };
+
+    todoCore.task.createTask(taskData);
+    onSubmit(taskData);
+  });
+
   const inputTaskName = createElement("input", "task-form-name");
   inputTaskName.placeholder = "Task Name";
+  inputTaskName.name = "name";
   if (taskData?.name) inputTaskName.value = taskData.name;
   taskForm.append(inputTaskName);
 
   const inputDescription = createElement("input", "task-form-description");
   inputDescription.placeholder = "Description";
+  inputDescription.name = "description";
+
   if (taskData?.description) inputDescription.value = taskData.description;
   taskForm.append(inputDescription);
 
@@ -59,6 +80,7 @@ function renderTaskForm(taskData = null) {
 
   const selectProject = createElement("select", "task-form-select");
   taskFooter.append(selectProject);
+  selectProject.name = "projectId";
 
   const projects = todoCore.project.getUserProjects();
   projects.forEach((p) => {
@@ -79,8 +101,9 @@ function renderTaskForm(taskData = null) {
   const saveButton = createElement(
     "button",
     "btn btn--primary",
-    taskData ? "Edit" : "Create"
+    taskData.id ? "Edit" : "Create"
   );
+  saveButton.type = "submit";
   taskActions.append(saveButton);
 
   const cancelButton = createElement("button", "btn btn--secondary", "Cancel");
@@ -89,7 +112,12 @@ function renderTaskForm(taskData = null) {
   return taskForm;
 }
 
-function renderTasksSection(title, data) {
+export function renderTasksFilterTitle(title) {
+  const tasksFilterTitle = createElement("div", "tasks-filter-title", title);
+  return tasksFilterTitle;
+}
+
+export function renderTasksSection(title, data) {
   const tasksSection = createElement("div", "tasks-section");
 
   const tasksSectionTitle = createElement("div", "tasks-section-title", title);
@@ -99,8 +127,6 @@ function renderTasksSection(title, data) {
     const taskItem = renderTaskItem(taskData);
     tasksSection.append(taskItem);
   });
-
-  tasksSection.append(renderTaskForm());
 
   return tasksSection;
 }
@@ -126,6 +152,17 @@ export function renderTasksContainer(title, data, querySelector = "") {
     );
     tasksContainer.appendChild(tasksSection);
   });
+
+  return tasksContainer;
+}
+
+export function renderTasksContainerWrapper(querySelector = ".tasks") {
+  let tasksContainer = document.querySelector(".tasks");
+  if (tasksContainer) {
+    tasksContainer.textContent = "";
+  } else {
+    tasksContainer = createElement("div", "tasks");
+  }
 
   return tasksContainer;
 }
