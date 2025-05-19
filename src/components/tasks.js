@@ -1,4 +1,5 @@
 import todoCore from "../model/todo.core.js";
+import { navigateToProject } from "../router/router.js";
 import { createElement } from "../utils/dom.js";
 import { renderTaskForm } from "./task-form.js";
 
@@ -75,7 +76,17 @@ function renderTaskItem(taskData, options = {}) {
   taskBody.append(taskFooter);
   const taskDuedate = createElement("div", "task-duedate", taskData.dueDate);
   taskFooter.append(taskDuedate);
-  const taskProject = createElement("div", "task-project", "OnWork");
+
+  const currentProject = todoCore.project.getProjectById(taskData.projectId);
+
+  const taskProject = createElement(
+    "div",
+    "task-project",
+    currentProject ? currentProject.name : "loading"
+  );
+
+  // navigate to project
+  // taskProject.addEventListener("click", () => {});
   taskFooter.append(taskProject);
 
   return taskWrapper;
