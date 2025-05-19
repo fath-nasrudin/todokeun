@@ -56,6 +56,10 @@ function renderTaskItem(taskData, options = {}) {
   });
 
   const taskDelete = createElement("button", "task-delete", "D");
+  taskDelete.addEventListener("click", () => {
+    todoCore.task.deleteTaskById(taskData.id);
+    taskWrapper.remove();
+  });
   taskActions.append(taskDelete);
 
   if (taskData.description) {
