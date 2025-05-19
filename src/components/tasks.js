@@ -1,8 +1,33 @@
 import todoCore from "../model/todo.core.js";
 import { createElement } from "../utils/dom.js";
+import { renderTaskForm } from "./task-form.js";
 
-function renderTaskItem(taskData) {
+function renderTaskItem(taskData, options = {}) {
+  // first, look the component in the ui, of not found, create new component
+  let taskWrapper = document.querySelector(`[data-id="${taskData.id}"]`);
+  if (!taskWrapper) {
+    taskWrapper = createElement("div");
+    taskWrapper.dataset.id = taskData.id;
+  } else {
+    taskWrapper.textContent = "";
+  }
+
+  if (options.type === "form") {
+    function onSubmit(data) {
+      const newTaskData = todoCore.task.updateTask(taskData.id, data);
+      renderTaskItem(newTaskData);
+    }
+
+    function onCancel() {
+      renderTaskItem(taskData);
+    }
+
+    taskWrapper.append(renderTaskForm(taskData, onSubmit, onCancel));
+    return;
+  }
+
   const task = createElement("div", `task${taskData.isDone ? " done" : ""}`);
+  taskWrapper.append(task);
 
   const taskCheckbox = createElement("input");
   taskCheckbox.type = "checkbox";
@@ -24,9 +49,13 @@ function renderTaskItem(taskData) {
   taskFirstline.append(taskTitle);
   const taskActions = createElement("div", "task-actions");
   taskFirstline.append(taskActions);
-  const taskEdit = createElement("div", "task-edit", "E");
+  const taskEdit = createElement("button", "task-edit", "E");
   taskActions.append(taskEdit);
-  const taskDelete = createElement("div", "task-delete", "D");
+  taskEdit.addEventListener("click", () => {
+    renderTaskItem(taskData, { type: "form" });
+  });
+
+  const taskDelete = createElement("button", "task-delete", "D");
   taskActions.append(taskDelete);
 
   if (taskData.description) {
@@ -45,7 +74,7 @@ function renderTaskItem(taskData) {
   const taskProject = createElement("div", "task-project", "OnWork");
   taskFooter.append(taskProject);
 
-  return task;
+  return taskWrapper;
 }
 
 export function renderTasksFilterTitle(title) {

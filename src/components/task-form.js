@@ -1,7 +1,11 @@
 import { createElement } from "../utils/dom.js";
 import todoCore from "../model/todo.core.js";
 
-export function renderTaskForm(taskData = {}, onSubmit) {
+export function renderTaskForm(
+  taskData = {},
+  onSubmit = null,
+  onCancel = null
+) {
   const taskForm = createElement("form", "task-form");
   taskForm.method = "POST";
   taskForm.addEventListener("submit", (e) => {
@@ -65,6 +69,9 @@ export function renderTaskForm(taskData = {}, onSubmit) {
   taskActions.append(saveButton);
 
   const cancelButton = createElement("button", "btn btn--secondary", "Cancel");
+  cancelButton.addEventListener("click", () => {
+    if (onCancel) onCancel();
+  });
   taskActions.append(cancelButton);
 
   return taskForm;
