@@ -17,7 +17,7 @@ export function renderProjectPage(projectId) {
     renderProjectPage(projectId);
   }
 
-  const taskForm = renderTaskForm({}, onSubmit);
+  const taskForm = renderTaskForm({ projectId }, onSubmit);
   const tasksFilterTitle = renderTasksFilterTitle(project.name);
   const sections = [{ tasks }].map((section) =>
     renderTasksSection(null, section.tasks)
