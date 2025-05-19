@@ -60,6 +60,20 @@ body {
   border-radius: 4px;
 }
 
+.leftbar-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftbar-nav-header-title {
+  font-weight: 600;
+}
+
+.leftbar-nav-header-actions > button {
+  padding: 0 8px;
+}
+
 .leftbar-nav-item:hover {
   background-color: #99999933;
   border-radius: 4px;
@@ -190,7 +204,8 @@ body {
 }
 
 /* task form */
-.task-form {
+.task-form,
+.project-form {
   padding: 8px 16px;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 8px;
@@ -201,20 +216,30 @@ body {
 }
 
 .task-form-name,
+.project-form-name,
 .task-form-description {
   border: none;
   outline: transparent;
+  background-color: transparent;
 }
 
-.task-form-name {
+.project-form {
+  background-color: white;
+  margin-bottom: 16px;
+}
+
+.task-form-name,
+.project-form-name {
   font-weight: 900;
 }
 
-.task-form-footer {
+.task-form-footer,
+.project-form-footer {
   display: flex;
 }
 
-.task-form-actions {
+.task-form-actions,
+.project-form-actions {
   margin-left: auto;
   display: flex;
   gap: 16px;
