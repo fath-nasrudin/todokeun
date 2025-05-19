@@ -44,7 +44,7 @@ export function renderTaskForm(
   taskFooter.append(selectProject);
   selectProject.name = "projectId";
 
-  const projects = todoCore.project.getUserProjects();
+  const projects = todoCore.project.getAllProjects();
   projects.forEach((p) => {
     const item = createElement("option", "task-form-option", p.name);
     item.value = p.id;
