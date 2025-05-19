@@ -1,5 +1,4 @@
 import todoCore from "../model/todo.core.js";
-import { navigateToProject } from "../router/router.js";
 import { createElement } from "../utils/dom.js";
 import { renderTaskForm } from "./task-form.js";
 
