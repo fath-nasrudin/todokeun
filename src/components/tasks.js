@@ -2,12 +2,18 @@ import todoCore from "../model/todo.core.js";
 import { createElement } from "../utils/dom.js";
 
 function renderTaskItem(taskData) {
-  const task = createElement("div", "task");
+  const task = createElement("div", `task${taskData.isDone ? " done" : ""}`);
 
   const taskCheckbox = createElement("input");
-  taskCheckbox.type = "radio";
+  taskCheckbox.type = "checkbox";
   taskCheckbox.name = "task-checkbox";
   taskCheckbox.checked = taskData.isDone;
+  taskCheckbox.addEventListener("change", () => {
+    const task = taskCheckbox.closest(".task");
+    task.classList.toggle("done");
+
+    todoCore.task.updateTask(taskData.id, { isDone: taskCheckbox.checked });
+  });
   task.appendChild(taskCheckbox);
 
   const taskBody = createElement("div", "task-body");
