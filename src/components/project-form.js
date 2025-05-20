@@ -21,6 +21,9 @@ export function renderProjectForm(
       projectId: formData.get("projectId"),
     };
 
+    // dont allow to submit if the project name is empty
+    if (!projectData.name) return;
+
     onSubmit(projectData);
   });
 

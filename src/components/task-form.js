@@ -21,6 +21,9 @@ export function renderTaskForm(
       projectId: formData.get("projectId"),
     };
 
+    // if name is empty, dont allow to submit
+    if (!taskData.name) return;
+
     onSubmit(taskData);
   });
 
