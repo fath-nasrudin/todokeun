@@ -101,6 +101,15 @@ function renderProjectNavSection() {
         navItem.append(renderProjectForm(project, onSubmit, onCancel));
         // tampilkan form. ganti nav item ini pakai project form
       }
+
+      // delete project
+      if (node.dataset.action === "delete") {
+        const navItem = node.closest("[data-project-id]");
+        const projectId = navItem.dataset.projectId;
+        todoCore.project.deleteProjectById(projectId);
+        navItem.remove();
+        window.location.hash = "#/inbox";
+      }
     });
   }
 
