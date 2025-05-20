@@ -1,0 +1,261 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button {
+  display: block;
+  cursor: pointer;
+}
+
+select {
+  padding: 4px 8px;
+}
+
+a {
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+/* layout */
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+.leftbar {
+  background-color: #c5c5c533;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mainbar {
+  flex: 1;
+}
+
+.leftbar-header,
+.mainbar-header {
+  padding-inline: 16px;
+  padding-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leftbar-nav {
+  padding-inline: 8px;
+}
+
+.leftbar-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftbar-nav-header-title {
+  font-weight: 600;
+}
+
+.leftbar-nav-header-actions > button {
+  padding: 0 8px;
+}
+
+.leftbar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.leftbar-nav-item {
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.leftbar-nav-item-title {
+  margin-right: auto;
+}
+
+.leftbar-nav-item button {
+  width: 18px;
+  aspect-ratio: 1 / 1;
+}
+
+.leftbar-nav-item:hover {
+  background-color: #99999933;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.leftbar-nav-item.disable {
+  color: #9c9c9c;
+  cursor: not-allowed;
+}
+
+.leftbar-nav-item.active {
+  background-color: rgba(255, 101, 101, 0.267);
+  color: rgb(199, 81, 69);
+}
+
+.mainbar {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-inline: 16px;
+}
+
+/* Tasks */
+
+.tasks {
+  max-width: 720px;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.tasks-filter-title {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.tasks-section-title {
+  font-weight: 600;
+}
+
+.tasks > *:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.task {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding-inline: 4px;
+}
+
+.task:hover {
+  background-color: #9696961e;
+}
+
+.task-checkbox {
+  cursor: pointer;
+}
+
+.task-firstline {
+  display: flex;
+}
+
+.task.done .task-title {
+  text-decoration: line-through;
+}
+
+.task-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 4px;
+}
+
+.task-actions > * {
+  color: rgba(49, 49, 49, 0.712);
+  aspect-ratio: 1 / 1;
+  width: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-actions > *:hover {
+  background-color: rgba(0, 0, 0, 0.26);
+}
+
+.task-body {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-description {
+  color: rgb(49, 49, 49);
+  font-size: 0.875rem;
+}
+
+.tasks-section > * {
+  padding-block: 8px;
+  border-bottom: 1px solid rgb(172, 172, 172);
+}
+
+.task-footer {
+  font-size: 0.825rem;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  display: block;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-color: transparent;
+  border-radius: 4px;
+}
+
+.btn.disable {
+  cursor: not-allowed;
+}
+
+.btn--primary {
+  background-color: rgb(255, 86, 67);
+  color: rgb(255, 255, 255);
+}
+
+/* task form */
+.task-form,
+.project-form {
+  padding: 8px 16px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-form-name,
+.project-form-name,
+.task-form-description {
+  border: none;
+  outline: transparent;
+  background-color: transparent;
+}
+
+.project-form {
+  background-color: white;
+  margin-bottom: 16px;
+}
+
+.task-form-name,
+.project-form-name {
+  font-weight: 900;
+}
+
+.task-form-footer,
+.project-form-footer {
+  display: flex;
+}
+
+.task-form-actions,
+.project-form-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 16px;
+}
