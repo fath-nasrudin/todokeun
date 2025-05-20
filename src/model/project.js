@@ -53,14 +53,17 @@ export function createProject({ name }) {
 }
 
 export function updateProject(id, data) {
+  let updatedProject;
   const projects = loadProjects();
   const newProjects = projects.map((project) => {
     if (project.id === id) {
       project.name = data.name ? data.name : project.name;
+      updatedProject = project;
     }
     return project;
   });
   saveProjects(newProjects);
+  return updatedProject;
 }
 
 export function deleteProjectById(id, options = {}) {

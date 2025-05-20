@@ -55,11 +55,6 @@ body {
   padding-inline: 8px;
 }
 
-.leftbar-nav > * {
-  padding: 8px;
-  border-radius: 4px;
-}
-
 .leftbar-nav-header {
   display: flex;
   justify-content: space-between;
@@ -72,6 +67,26 @@ body {
 
 .leftbar-nav-header-actions > button {
   padding: 0 8px;
+}
+
+.leftbar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.leftbar-nav-item {
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.leftbar-nav-item-title {
+  margin-right: auto;
+}
+
+.leftbar-nav-item button {
+  width: 18px;
+  aspect-ratio: 1 / 1;
 }
 
 .leftbar-nav-item:hover {

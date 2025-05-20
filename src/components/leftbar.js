@@ -13,9 +13,19 @@ const filters = {
 function renderNavItem(itemData) {
   const navItem = createElement(
     "div",
-    `leftbar-nav-item ${itemData.disable ? " disable" : ""}`,
-    itemData.name
+    `leftbar-nav-item ${itemData.disable ? " disable" : ""}`
   );
+
+  const editButton = createElement("button", "", "E");
+  editButton.dataset.action = "edit";
+  const deleteButton = createElement("button", "", "D");
+  deleteButton.dataset.action = "delete";
+  navItem.append(
+    createElement("div", "leftbar-nav-item-title", itemData.name),
+    editButton,
+    deleteButton
+  );
+
   navItem.dataset.target = itemData.target;
 
   navItem.addEventListener("click", () => {
@@ -61,6 +71,37 @@ function renderProjectNavSection() {
   } else {
     navSection = createElement("div", "leftbar-nav");
     navSection.dataset.id = NAV_ID;
+    navSection.addEventListener("click", (e) => {
+      // handling edit
+      const node = e.target;
+
+      if (node.dataset.action === "edit") {
+        const navItem = node.closest("[data-project-id]");
+
+        // goal. ganti component nav item dengan key berupa project id dengan form
+        navItem.innerHTML = "";
+        const projectId = navItem.dataset.projectId;
+        const project = todoCore.project.getProjectById(projectId);
+
+        const onSubmit = (data) => {
+          const updatedProject = todoCore.project.updateProject(
+            projectId,
+            data
+          );
+
+          navItem.innerHTML = "";
+          navItem.append(renderNavItem(updatedProject));
+        };
+
+        const onCancel = () => {
+          navItem.innerHTML = "";
+          navItem.append(renderNavItem(project));
+        };
+
+        navItem.append(renderProjectForm(project, onSubmit, onCancel));
+        // tampilkan form. ganti nav item ini pakai project form
+      }
+    });
   }
 
   const navSectionHeader = createElement("div", "leftar-nav-header");
@@ -76,8 +117,12 @@ function renderProjectNavSection() {
   const projectForm = renderProjectForm({}, onSubmit);
 
   const navItems = data.items.map((item) => {
+    const navItemWrapper = createElement("div");
+    navItemWrapper.dataset.projectId = item.id;
+    navItemWrapper.dataset.key = item.id;
     const navItem = renderNavItem(item);
-    return navItem;
+    navItemWrapper.append(navItem);
+    return navItemWrapper;
   });
 
   navSection.append(navSectionHeader, projectForm, ...navItems);
